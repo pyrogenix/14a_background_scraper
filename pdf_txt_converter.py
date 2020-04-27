@@ -23,4 +23,4 @@ print(type(text))
 f = open('./output.txt','w')
 f.write(str(text))
 
-print("hello")
+print("done")
