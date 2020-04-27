@@ -2,43 +2,6 @@ import re
 import sys
 import xlsxwriter
 
-# txtfile = open("output.txt", "rt")
-# contents = txtfile.read()
-
-# listed = []
-
-# with open("output.txt", "rt") as text:
-#     Line = text.readline()
-
-#     while Line!='':
-#         Line1 = Line.split('.')
-#         for Sentence in Line1:
-#             listed.append(Sentence)
-#         Line = text.readline()
-# print(listed)
-
-# month = {'january', 'february', 'march', 'april', 'may', 'june'}
-# stringToMatch = 'month'
-# matchedLine = ''
-# #get line
-# with open('output.txt', 'r') as file:
-# 	for line in file:
-# 		if stringToMatch in line:
-# 			matchedLine = line
-# 			break
-# #and write it to the file
-# with open('file.txt', 'w') as file:
-# 	file.write(matchedLine)
-
-# import datefinder
-
-# with open('output.txt', 'rt') as filingtxt:
-#         data = filingtxt.readlines()
-
-# matches = datefinder.find_dates(str(data))
-# for match in matches:
-#     print(match)
-
 file_name = './a2231072zdefm14a.htm'
 
 def search_multiple_strings_in_file(file_name, list_of_strings):
@@ -61,15 +24,15 @@ def search_multiple_strings_in_file(file_name, list_of_strings):
 
 # search for given strings in the file 'sample.txt'
 matched_lines = search_multiple_strings_in_file(file_name, ['background of the merger', 'termination fee'])
- 
+
 print('Total Matched lines : ', len(matched_lines))
 for elem in matched_lines:
     # sys.stdout = open('file.htm','wt')
     print('Word = ', elem[0], ' :: Line Number = ', elem[1], ' :: Line = ', elem[2])
 
-
-#excel
+# excel
 workbook = xlsxwriter.Workbook('./output.xlsx')
+
 worksheet = workbook.add_worksheet()
 worksheet.write('A1', 'CIK')
 worksheet.write('B1', 'URL')
@@ -79,15 +42,10 @@ worksheet.write('D1', 'Results')
 row = 0
 column = 2
 
-search_term = (elem[0])
-data_output = (elem[2])
+worksheet.write(row + 1, column, str(elem[0]))
 
-for item in search_term:
-    worksheet.write(row + 1, column, item)
-
-column = 3
-
-for item in data_output:
-    worksheet.write(row + 1, column, item)
+for elem in matched_lines[:50]:
+    worksheet.write(row + 1, column +1, str(elem[2]))
+    column += 1
 
 workbook.close()
