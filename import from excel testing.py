@@ -43,7 +43,7 @@ for cell in data:
     linenum = 0
     for line in urllib.request.urlopen(file_url):
         linenum +=1
-        pattern = re.compile(r"[A-Z][a-z]*(?:\s|&nbsp;)+\d{1,2}[,\/]\s\d{4}")
+        pattern = re.compile(r"[A-Z][a-z]{3,9}")
         matches = pattern.finditer(str(urllib.request.urlopen(file_url)))
 
         # if matches in line:
@@ -51,7 +51,7 @@ for cell in data:
 
         for match in matches:
             print(match)
-            print(line.rstrip())
+            #print(line.rstrip())
 
             dataline = line.rstrip()
 
@@ -59,7 +59,7 @@ for cell in data:
             worksheet.write(row + 1, column +1, str(dataline))
             column += 1
 
-            workbook.close()
-
     count+= 1
     continue
+
+workbook.close()
