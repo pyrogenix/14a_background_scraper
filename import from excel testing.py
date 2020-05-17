@@ -51,7 +51,7 @@ for cell in data:
 
         for match in matches:
             print(match)
-            #print(line.rstrip())
+            print(line.rstrip())
 
             dataline = line.rstrip()
 
