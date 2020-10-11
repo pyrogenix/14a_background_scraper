@@ -44,7 +44,7 @@ while True:
 
         link_tag = getLinks(raw_url)
         file_url = str(raw_url) + str(link_tag[1])
-        #print(file_url)
+        print(file_url)
 
         #***start excel
         for cell in data: 
