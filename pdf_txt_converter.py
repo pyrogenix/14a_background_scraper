@@ -1,54 +1,29 @@
 """ PDF to TXT converter designed for use in the 14A Background Scraper project.
     Author: Adam Heitzman (pyrogenix)
-    Version 2.0.0
+    Version 3.0.0
 """
 
 from tika import parser
-import pandas as pd
+import os
 
 
-def get_pdfs():
-    # Opens excel sheet and creates dataframe using column 'Filename'
-    file_count, error_count, error_log = 0, 0, []
-    spreadsheet = pd.read_excel(r'file_list.xlsx')
-    df = pd.DataFrame(spreadsheet, columns=['Filename'])
+# WARNING: THE CURRENT VERSION OF THIS CODE IS UNTESTED AND IS
+# JUST A SHORTENED EDIT OF THE PREVIOUS PROGRAM
+# FOR GUARANTEED WORKING CODE USE ./old/pdf_txt_converter_long.py
 
-    # Iterates through rows in dataframe and extracts the
-    # file name from all the info returned
-    for index, row in df.iterrows():
-        file_holder = str(row).split()
-        curr_file = file_holder[1]
-        if '14A' in curr_file:
-            error_count, error_log = convert_to_txt(
-                curr_file, error_count, error_log)
-            file_count += 1
-
-    # Prints end of program message
-    if error_count == 0:
-        print("All files successfully converted")
-    else:
-        print(str(error_count) + " out of " +
-              file_count + " files successfully converted")
-        print("The following files were unable to convert: ")
-        for i in error_log:
-            print("> " + i)
-    exit()
-
-
-def convert_to_txt(file_name, error_count, error_log):
+def convert_to_txt():
     # Uses Tika parser to open each file and convert to txt
-    try:
-        raw = parser.from_file('./14a_pdf/' + file_name)
-    except Exception:
-        print("ERROR: " + file_name + " failed to convert.")
-        error_count += 1
-        error_log.append(file_name)
-    output = open('./output_as_txt/' + file_name +
-                  '.txt', 'w', encoding='utf-8')
-    output.write(str(raw['content']))
-    print("Successfully converted " + file_name + " to .txt")
-    return error_count, error_log
+    pdf_dir = './14a_pdf/'
+    for file in os.scandir(pdf_dir):
+        try:
+            raw = parser.from_file('./14a_pdf/' + file)
+        except Exception:
+            print("ERROR: " + file + " failed to convert.")
+        output = open('./output_as_txt/' + file +
+                      '.txt', 'w', encoding='utf-8')
+        output.write(str(raw['content']))
+        print("Successfully converted " + file + " to .txt")
 
 
 if __name__ == "__main__":
-    get_pdfs()
+    convert_to_txt()
