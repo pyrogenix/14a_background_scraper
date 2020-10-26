@@ -1,6 +1,10 @@
 import os
 import re
 
+# WARNING:
+# Code is unfinished and scrapped.
+# Don't bother trying to use it.
+
 
 def main():
     txtdir = "./output_as_txt/"

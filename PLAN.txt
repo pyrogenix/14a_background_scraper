@@ -1,0 +1,15 @@
+Go through all PDF files and extract original link to spreadsheet
+Open link and search through htm file for *either* anchor point at background (starter code in html_scraper.py)
+	OR use page numbers in table of contents (if anchor with BACKGROUND OF THE MERGER text has same #<anchor> as next link (page number link in toc)
+		THEN go to that page (look up sec web scraping videos / sigma coding) and extract text split by '.' (sentence by sentence).
+		STOP scraping when next section starts (page num also in toc).
+
+
+
+
+How to Web Scrape the SEC | Part 1 https://www.youtube.com/watch?v=-7I7OAC6ih8
+
+
+
+In case you need CSV of tickers:
+Python 3 Programming Tutorial - Reading from a CSV spreadsheet https://www.youtube.com/watch?list=PLQVvvaa0QuDe8XSftW-RAxdo6OmaeL85M&v=K_oXb04izZM&feature=emb_logo
