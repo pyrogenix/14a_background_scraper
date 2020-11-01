@@ -1,7 +1,7 @@
 GUIDE TO FILES:
 
 edgar_web_scraper.py
-> Hasn't really been started yet
+> hasn't really been started yet
 
 html_scraper.py
 > designed for scraping offline html files, but the code could be easily repurposed to analyze files from the sec website
