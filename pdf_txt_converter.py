@@ -1,5 +1,4 @@
 """ PDF to TXT converter designed for use in the 14A Background Scraper project.
-    Author: Adam Heitzman (pyrogenix)
     Version 3.0.0
 """
 
